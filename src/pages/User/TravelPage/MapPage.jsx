@@ -43,7 +43,7 @@ const MapPage = () => {
           lat: cursor.lat,
           lng: cursor.lng
         }
-        await createMarker(newMarker);
+        const createdMarker = await createMarker(newMarker);
         await getMarkers();
         setActiveMarkerType(null) // Reset after adding
       }
@@ -64,12 +64,13 @@ const MapPage = () => {
   }
 
   const renderMarker = (marker) => {
-    const { id, ...otherProps } = marker;
+    const { id, userId, ...otherProps } = marker;
     const commonProps = {
       size: 20,
       lat: otherProps.lat,
       lng: otherProps.lng,
-      onClick: () => handleMarkerClick(id)
+      onClick: () => handleMarkerClick(id),
+      userId: userId
     }
     switch (marker.type) {
       case 'garbage': return <GarbageMarker key={id} lng={otherProps.lng} lat={otherProps.lat} {...commonProps} />
