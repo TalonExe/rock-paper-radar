@@ -22,7 +22,8 @@ import DashboardAccounts from "./pages/Admin/Dashboard/DashboardAccounts.jsx";
 import DashboardUsers from "./pages/Admin/Dashboard/DashboardUsers.jsx";
 import DashboardBans from "./pages/Admin/Dashboard/DashboardBans.jsx";
 import DashboardPosts from "./pages/Admin/Dashboard/DashboardPosts.jsx";
-import TravelItenary from "./pages/User/TravelPage/TravelItenary.jsx";
+import TravelItinerary from "./pages/User/TravelPage/TravelItinerary.jsx";
+import ViewFAQ from "./pages/User/FAQPage/ViewFAQ.jsx"
 
 const router = createBrowserRouter([
   {
@@ -56,8 +57,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/user/travel-itenary",
-    element: <TravelItenary />,
+    path: "/user/travel-itinerary",
+    element: <TravelItinerary />,
     errorElement: <ErrorPage />,
   },
   {
@@ -80,6 +81,12 @@ const router = createBrowserRouter([
     element: <MapPage />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/user/faq-view",
+    element: <ViewFAQ />,
+    errorElement: <ErrorPage />,
+  },
+  
   {
     path: "/admin",
     element: <SignInPage />,

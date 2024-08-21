@@ -1,4 +1,3 @@
-import React from "react";
 import Marker from "../../assets/images/Marker.svg";
 import Badge from "../ui/Badge.jsx";
 import Dropdown from "../ui/Dropdown";

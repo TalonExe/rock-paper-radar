@@ -9,7 +9,6 @@ const Blogs = () => {
     description: "lorem ipsum dfe efsfdafasfa sdfas fsafsdfas dssdfsf",
     username: "Lucas Monroe",
     date: "12/3/2028",
-    tags: ["Fashion", "Bitcoin", "Macademia", "Sunshine", "Rainbows"],
     link: ""
 }, {
     id: 2,
@@ -18,7 +17,6 @@ const Blogs = () => {
     description: "lorem ipsum dfe efsfdafasfa sdfas fsafsdfas dssdfsf",
     username: "Lucas Monroe",
     date: "12/3/2028",
-    tags: ["Fashion", "Bitcoin", "Macademia", "Sunshine", "Rainbows"],
     link: ""
 }, {
     id: 3,
@@ -27,7 +25,6 @@ const Blogs = () => {
     description: "lorem ipsum dfe efsfdafasfa sdfas fsafsdfas dssdfsf",
     username: "Lucas Monroe",
     date: "12/3/2028",
-    tags: ["Fashion", "Bitcoin", "Macademia", "Sunshine", "Rainbows"],
     link: ""
 },
 ]
@@ -36,15 +33,15 @@ const Blogs = () => {
 return (
     <div>
         <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 bg-opacity-50 '>
-            {dummyData.map(({ id, image, title, description, username, date, tags, link }) => {
+            {dummyData.map(({ id, image, title, description, username, date, link }) => {
                 return (<BlogCard
                     key={id}
+                    blogId={id}
                     image={image}
                     title={title}
                     description={description}
                     username={username}
                     date={date}
-                    tags={tags}
                     link={link}
                     hoverable
                 />)

@@ -7,7 +7,6 @@ const MapLoader = ({handleClick, setCursor, markers}) => {
   useEffect(() => {
     if (mapRef.current) {
       const map = mapRef.current.getMap();
-      
       map.on('styleimagemissing', (e) => {
         const id = e.id; // id of the missing image
         map.loadImage(`path/to/your/images/${id}.png`, (error, image) => {
@@ -29,7 +28,8 @@ const MapLoader = ({handleClick, setCursor, markers}) => {
         initialViewState={{
           longitude: 0,
           latitude: 0,
-          zoom: 1
+          zoom: 1,
+
         }}
         mapStyle={"https://api.maptiler.com/maps/streets/style.json?key=q9EdfYY1JdifqGtVraeG"}
         style={{width: "100%", height: "100%", position: "absolute"}}

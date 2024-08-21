@@ -5,6 +5,7 @@ import Mapicon from '../../assets/images/MapIcon.svg'
 import searchIcon from '../../assets/images/search-icon.svg'
 import CalendarIcon from '../../assets/images/CalendarIcon.svg'
 import logoutIcon from '../../assets/images/LogoutIcon.svg'
+import FAQIcon from '../../assets/images/FAQIcon.svg'
 
 const Navbar = () => {
     const checkLogin = userStore(state => state.checkLogin);
@@ -44,8 +45,13 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/user/travel-itenary" className="tooltip tooltip-right pt-2 pb-2" data-tip="Travel Plan">
+                        <Link to="/user/travel-itinerary" className="tooltip tooltip-right pt-2 pb-2" data-tip="Travel Plan">
                             <img src={CalendarIcon} alt="" className='w-8' />
+                        </Link>
+                    </li>
+                    <li className='mb-2'>
+                        <Link to="/user/faq-view" className="tooltip tooltip-right pt-2 pb-2" data-tip="FAQ">
+                            <img src={FAQIcon} alt="" className='w-8' />
                         </Link>
                     </li>
                 </div>

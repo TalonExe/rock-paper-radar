@@ -1,7 +1,7 @@
 import React from "react";
-import "./ArrowStyle.css";
+import "../../components/UserGuide/ArrowStyle.css";
 
-const UserGuideSection = ({ section, content = [], onSelect }) => {
+const FAQSection = ({ section, content = [], onSelect }) => {
   return (
     <div className="w-[260px] flex flex-col h-max bg-white">
       {/* section title */}
@@ -28,4 +28,4 @@ const UserGuideSection = ({ section, content = [], onSelect }) => {
   );
 };
 
-export default UserGuideSection;
+export default FAQSection;

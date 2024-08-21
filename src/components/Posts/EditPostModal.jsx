@@ -171,6 +171,7 @@ const EditPostModal = ({ id, postTitle, postContent, tags, pictureUrl, location 
             </dialog>
         </FormProvider>
     )
+
 }
 
 export default EditPostModal

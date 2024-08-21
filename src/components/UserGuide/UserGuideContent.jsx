@@ -1,7 +1,6 @@
 import React from "react";
 
 const UserGuideContent = ({ content = [] }) => {
-  console.log("Content received in UserGuideContent:", content);
   return (
     <div className="w-screen">
       {content.map((item, index) => (
