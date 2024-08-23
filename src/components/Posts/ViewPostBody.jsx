@@ -37,23 +37,6 @@ const ViewPostBody = ({ postId }) => {
         if (postDetails) {  
             setManageList([
                 {
-                    label: "Edit Post",
-                    action: () => document.getElementById(`editPost${postId}`).showModal(),
-                    modal: <EditPostModal
-                        key={postId}
-                        id={postId}
-                        title={postDetails.post.postTitle}
-                        description={postDetails.post.postContent}
-                    /> ,
-                },
-                {
-                    label: "Delete Post",
-                    action: () => document.getElementById(`deleteModal${postId}`).showModal(),
-                    modal: <DeletePostModal
-                        id={postId}
-                    /> ,
-                },
-                {
                     label: "Report Post",
                     action: () => document.getElementById(`reportPostModal${postId}`).showModal(),
                     modal: <ReportPostModal
