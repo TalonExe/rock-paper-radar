@@ -7,6 +7,7 @@ import Dropdown from "../ui/Dropdown";
 import Cookies from "js-cookie";
 import EditProfileModal from "../modals/EditProfileModal.jsx";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import ReportUserModal from "../modals/ReportUserModal";
 
 const ProfileSection = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -42,8 +43,8 @@ const ProfileSection = () => {
     if (usernameQuery && usernameQuery !== username) {
         manageList[0] = {
             label: "Report User",
-            action: () => document.getElementById('editProfile').showModal(),
-            modal: <LoadingSpinner />
+            action: () => document.getElementById('reportUserModal').showModal(),
+            modal: <ReportUserModal />
         };
     }
 

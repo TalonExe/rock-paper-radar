@@ -2,21 +2,22 @@ import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 import userStore from "../../stores/userStore";
 
-const ReportPostModal = ({ id }) => {
+const ReportUserModal = () => {
   const { register, formState: { errors }, getValues } = useForm();
-  const createPostReport = userStore((state) => state.createPostReport);
+  const createUserReport = userStore((state) => state.createUserReport);
+  const username = userStore((state) => state.username);
 
   const handleReport = () => {
-    createPostReport(id, getValues("reportContent"));
-    document.getElementById(`reportPostModal${id}`).close();
+    createUserReport(username, getValues("reportContent"));
+    document.getElementById(`reportUserModal`).close();
   };
 
   return (
     <>
-      <dialog id={`reportPostModal${id}`} className="modal">
+      <dialog id={`reportUserModal`} className="modal">
         <div className="modal-box absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <h3 className="font-bold text-lg">Warning!!!</h3>
-          <p className="py-4">Precaution: please do not simply report post or we will take action on you as well for misconduct.</p>
+          <p className="py-4">Precaution: please do not simply report users or we will take action on you as well for misconduct.</p>
           <div className="modal-action">
             <div className='flex flex-col w-full'>
               <div className='flex flex-col w-full mt-2'>
@@ -46,4 +47,4 @@ const ReportPostModal = ({ id }) => {
   )
 }
 
-export default ReportPostModal
+export default ReportUserModal

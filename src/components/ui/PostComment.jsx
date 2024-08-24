@@ -24,7 +24,7 @@ const PostComment = ({ comment }) => {
         manageComments = [
             {
                 label: "Report Comment",
-                action: () => document.getElementById(`reportCommentModal${comment.id}${comment.postId}`).showModal(),
+                action: () => document.getElementById(`reportCommentModal${comment.id}`).showModal(),
                 modal: <ReportCommentModal commentId={comment.id} postId={comment.postId} />
             }
         ]

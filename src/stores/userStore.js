@@ -435,6 +435,54 @@ const userStore = create((set, get) => ({
         } catch (error) {
             console.log(error);
         }
+    },
+    createPostReport: async (postId, reportContent) => {
+        try {
+            const response = await mainAxios.post('/travelPost/reportPost', {
+                postId: postId,
+                reportContent: reportContent
+            }, {
+                headers: {
+                    authorization: Cookies.get('token'),
+                },
+            });
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
+    createCommentReport: async (commentId, reportContent) => {
+        try {
+            const response = await mainAxios.post('/travelPost/reportComment', {
+                commentId: commentId,
+                reportContent: reportContent
+            }, {
+                headers: {
+                    authorization: Cookies.get('token'),
+                },
+            });
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
+    createUserReport: async (username, reportContent) => {
+        try {
+            const response = await mainAxios.post('/report', {
+                username: username,
+                reportContent: reportContent
+            }, {
+                headers: {
+                    authorization: Cookies.get('token'),
+                },
+            });
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
     }
 }))
 
