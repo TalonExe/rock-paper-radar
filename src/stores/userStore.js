@@ -106,6 +106,19 @@ const userStore = create((set, get) => ({
             console.log(error);
         }
     },
+    getReportedPostDetails: async (postId) => {
+        try {
+            const response = await mainAxios.get(`/travelPost/post`, {
+                params: {
+                    postId
+                }
+            });
+            const data = response.data.data;
+            set({ postDetails: data });
+        } catch (error) {
+            console.log(error);
+        }
+    },
     getPublicProfile: async (username) => {
         try {
             const response = await mainAxios.get('/user/profile', {

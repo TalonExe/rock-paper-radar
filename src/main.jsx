@@ -33,6 +33,7 @@ import EditUserGuide from "./components/UserGuide/EditUserGuide.jsx";
 import FeedbackSingleView from "./components/Feedback/FeedbackSingleView.jsx";
 import BugReportSingleView from "./components/Feedback/BugReportSingleView.jsx";
 import ReportManagementPage from "./pages/Admin/ReportManagement/ReportManagementPage.jsx";
+import AdminViewPostPage from "./pages/Admin/ReportManagement/AdminViewPostPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -204,6 +205,11 @@ const router = createBrowserRouter([
   {
     path: "/admin/bugreport/:id",
     element: <BugReportSingleView />, //change to single bug report view
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/admin/post-view",
+    element: <AdminViewPostPage />, //change to single bug report view
     errorElement: <ErrorPage />,
   },
  

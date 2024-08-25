@@ -15,6 +15,7 @@ const staffStore = create((set, get) => ({
     markers: null,
     travelPlans: null,
     employees: null,
+    reportPost: null,
     setLogin: (value) => set({ isLogin: value }),
     setProfilePictureUrl: (value) => set({ profilePictureUrl: value }),
     setUsername: (value) => set({ username: value }),
@@ -33,6 +34,7 @@ const staffStore = create((set, get) => ({
         profileDetails: null,
         postComments: null,
         markers: null,
+        reportPost: null,
     })),
     checkLogin: () => {
         if (Cookies.get("token") !== undefined) {
@@ -188,6 +190,33 @@ const staffStore = create((set, get) => ({
                 headers: {
                     authorization: Cookies.get('token'),
                 },
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getReportPost: async () => {
+        try {
+            const response = await mainAxios.get(`/staff/reportPost`, {
+                headers: {
+                    authorization: Cookies.get('token'),
+                }
+            });
+            set({ reportPost: response.data.data});
+        } catch (error) {
+            set({ reportPost: error });
+        }
+    },
+    createBannedPost: async (reportId) => {
+        try {
+            await mainAxios.post(`/staff/bannedPost`,
+            {
+                reportId: reportId
+            },
+            {
+                headers: {
+                    authorization: Cookies.get('token'),
+                }
             });
         } catch (error) {
             console.log(error);

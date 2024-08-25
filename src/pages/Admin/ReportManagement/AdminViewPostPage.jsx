@@ -5,8 +5,10 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 import BackButton from '../../../components/ui/BackButton';
+import AdminLayout from '../../../components/Layouts/AdminLayout';
+import AdminViewPostBody from './AdminViewPostBody';
 
-const ViewPostPage = () => {
+const AdminViewPostPage = () => {
   const [searchParams] = useSearchParams();
   const postId = searchParams.get('p');
   const navigate = useNavigate();
@@ -25,14 +27,14 @@ const ViewPostPage = () => {
   }
 
   return (
-    <UserLayout>
+    <AdminLayout>
       <Header className='flex flex-row items-center gap-6'>
         <BackButton to="/admin/report-management"  />
         <span className='text-2xl'><b>Posts</b></span>
       </Header>
-      <ViewPostBody postId={postId} />
-    </UserLayout>
+      <AdminViewPostBody postId={postId} />
+    </AdminLayout>
   )
 }
 
-export default ViewPostPage
+export default AdminViewPostPage
