@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import staffStore from '../../stores/staffStore';
 
-const BanReportModal = ({ id, currentState }) => {
+const BanReportModal = ({ id, state }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const updateReportPostState = staffStore((state) => state.updateReportPostState);
 
     const banReportHandler = async () => {
-      if (currentState === 'Unreviewed') {
-        setError('Cannot ban an unreviewed report. Please review the report first.');
+      if (state !== 'Unreviewed') {
+        setError('This report has already been reviewed.');
         return;
       }
 
@@ -39,7 +39,7 @@ const BanReportModal = ({ id, currentState }) => {
             <button 
               className="btn bg-red-600 text-white mr-2" 
               onClick={banReportHandler} 
-              disabled={isLoading || currentState === 'Unreviewed'}
+              disabled={isLoading}
             >
               {isLoading ? 'Processing...' : 'Ban Post'}
             </button>

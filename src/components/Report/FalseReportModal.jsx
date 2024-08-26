@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import staffStore from '../../stores/staffStore';
 
-const FalseReportModal = ({ id }) => {
+const FalseReportModal = ({ id, state }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const updateReportPostState = staffStore((state) => state.updateReportPostState);
-    const getReportState = staffStore((state) => state.getReportState);
 
     const falseReportHandler = async () => {
         setIsLoading(true);
         setError(null);
         try {
-            const currentState = await getReportState(id);
-            if (currentState !== 'Unreviewed') {
+            if (state !== 'Unreviewed') {
                 throw new Error('This report has already been reviewed.');
             }
             await updateReportPostState({ reportId: id, state: 'False report' });
