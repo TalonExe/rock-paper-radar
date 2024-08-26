@@ -17,12 +17,14 @@ const ReportManagementBody = () => {
     };
 
     const postHeaders = ['ID', 'User', 'Report Content', 'Post Link', 'Created At', 'Status', 'Action'];
-    const commentHeaders = ['ID', 'User', 'Report Content', 'Actual Comment', 'Created At', 'Status', 'Action'];
+    const commentHeaders = ['ID', 'Reported by', 'Report Content', 'Actual Comment', 'Created At', 'Status', 'Action'];
 
     useEffect(() => {
         const fetchPostDetails = async () => {
             try {
                 console.log(reportComment);
+                await getReportComment();
+                await getReportPost();
                 if (selectedOption === 'Post'){
                     await getReportPost();
                     setIsLoading(true);
@@ -82,6 +84,8 @@ const ReportManagementBody = () => {
             </div>
             {isLoading ? (
                 <LoadingSpinner />
+            ) : !currentData || currentData.length === 0 ? (
+                <div className="text-center py-8 text-gray-600">No data to be displayed</div>
             ) : (
                 <div className='overflow-x-auto bg-white h-full w-full flex flex-col justify-start p-6 items-center'>
                     <table className='table w-full my-12 p-20 rounded-xl'>

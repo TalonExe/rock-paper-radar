@@ -47,7 +47,7 @@ const BanReportModal = ({ id, state, selectedOption }) => {
               onClick={banReportHandler} 
               disabled={isLoading}
             >
-              {isLoading ? 'Processing...' : 'Ban Post'}
+              {isLoading ? 'Processing...' : 'Ban'}
             </button>
             <form method="dialog">
               <button className="btn">Close</button>

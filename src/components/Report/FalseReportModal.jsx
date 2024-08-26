@@ -15,10 +15,10 @@ const FalseReportModal = ({ id, state, selectedOption }) => {
                 throw new Error('This report has already been reviewed.');
             }
             if (selectedOption === 'Post'){
-                await updateReportPostState({ reportId: id, state: 'False report' });
+                await updateReportPostState({ reportId: id, state: 'False Report' });
             }
             else if (selectedOption === 'Comment'){
-                await updateReportCommentState({ reportId: id, state: 'False report' });
+                await updateReportCommentState({ reportId: id, state: 'False Report' });
             }
             const modalElement = document.getElementById(`falseReportModal${id}`);
             if (modalElement) {
