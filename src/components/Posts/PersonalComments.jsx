@@ -8,15 +8,24 @@ import ReportCommentModal from './ReportCommentModal'
 const PersonalComments = ({ comment }) => {
     const date = new Date(comment.createdAt);
     const actualUser = userStore((state) => state.username);
+
+    const centerAndShowModal = (modalId) => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('flex', 'items-center', 'justify-center');
+            modal.showModal();
+        }
+    };
+
     let manageComments = [
         {
             label: "Edit Comment",
-            action: () => document.getElementById(`editCommentModal${comment.id}`).showModal(),
+            action: () => centerAndShowModal(`editCommentModal${comment.id}`),
             modal: <EditCommentModal commentId={comment.id} postId={comment.postId} comment={comment.commentContent} />
         },
         {
             label: "Delete Comment",
-            action: () => document.getElementById(`deleteCommentModal${comment.id}`).showModal(),
+            action: () => centerAndShowModal(`deleteCommentModal${comment.id}`),
             modal: <DeleteCommentModal commentId={comment.id} postId={comment.postId} />
         },
     ]
@@ -24,7 +33,7 @@ const PersonalComments = ({ comment }) => {
         manageComments = [
             {
                 label: "Report Comment",
-                action: () => document.getElementById(`reportCommentModal${comment.id}${comment.postId}`).showModal(),
+                action: () => centerAndShowModal(`reportCommentModal${comment.id}${comment.postId}`),
                 modal: <ReportCommentModal commentId={comment.id} postId={comment.postId} />
             }
         ]

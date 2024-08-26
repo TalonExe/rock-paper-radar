@@ -7,6 +7,8 @@ const ReportManagementBody = () => {
     const [isLoading, setIsLoading] = useState(true);
     const getReportPost = staffStore((state) => state.getReportPost);
     const reportPost = staffStore((state) => state.reportPost);
+    const getReportComment = staffStore((state) => state.getReportComment);
+    const reportComment = staffStore((state) => state.reportComment);
     const [selectedOption, setSelectedOption] = useState('Post');
     const handleOptionChange = (option) => {
         setSelectedOption(option);
@@ -22,9 +24,10 @@ const ReportManagementBody = () => {
                     setIsLoading(false);
                 }
                 else {
-                    // setIsLoading(true);
-                    // await getReportPost();
-                    // setIsLoading(false);
+                    setIsLoading(true);
+                    await getReportComment();
+                    console.log(reportComment);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.log(error);
