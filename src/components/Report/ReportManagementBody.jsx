@@ -77,11 +77,12 @@ const ReportManagementBody = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {reportPost.map((item) => {
+                        {reportPost
+                            .sort((a, b) => a.id - b.id)
+                            .map((item) => {
                             return (
                                 <TableRow
                                     key={item.id}
-                                    postId={item.postId}
                                     item={item}
                                 />
                             )

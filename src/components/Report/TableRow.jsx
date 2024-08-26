@@ -3,7 +3,7 @@ import FalseReportModal from './FalseReportModal';
 import Dropdown from '../../components/ui/Dropdown';
 import BanReportModal from './BanReportModal';
 
-const ReportManagementBody = ({postId, item}) => {
+const ReportManagementBody = ({item}) => {
     let list = [
         {
             label: "False Report",
