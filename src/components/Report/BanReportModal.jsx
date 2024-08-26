@@ -6,6 +6,7 @@ const BanReportModal = ({ id, state, selectedOption }) => {
     const [error, setError] = useState(null);
     const updateReportPostState = staffStore((state) => state.updateReportPostState);
     const updateReportCommentState = staffStore((state) => state.updateReportCommentState);
+    const updateReportUserState = staffStore((state) => state.updateReportUserState);
 
     const banReportHandler = async () => {
       if (state !== 'Unreviewed') {
@@ -21,6 +22,9 @@ const BanReportModal = ({ id, state, selectedOption }) => {
         }
         else if (selectedOption === 'Comment'){
             await updateReportCommentState({ reportId: id, state: 'Banned' });
+        }
+        else if (selectedOption === 'User'){
+            await updateReportUserState({ reportId: id, state: 'Banned' });
         }
         const modalElement = document.getElementById(`banReportModal${id}`);
         if (modalElement) {

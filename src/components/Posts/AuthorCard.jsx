@@ -5,6 +5,7 @@ import Dropdown from "../ui/Dropdown";
 import EditPostModal from "./EditPostModal";
 import DeletePostModal from "./DeletePostModal";
 import ReportPostModal from "./ReportPostModal";
+import ReportUserModal from "./ReportUserModal";
 import userStore from "../../stores/userStore";
 
 const AuthorCard = ({ postId, postTitle, pictureUrl, username, postContent, createdAt, profilePictureUrl, tags, location }) => {
@@ -31,8 +32,16 @@ const AuthorCard = ({ postId, postTitle, pictureUrl, username, postContent, crea
             action: () => document.getElementById(`reportPostModal${postId}`).showModal(),
             modal: <ReportPostModal
                 id={postId}
-            /> ,
-        }]
+            /> },
+            {
+                label: "Report User",
+                action: () => document.getElementById(`reportUserModal${postId}`).showModal(),
+                modal: <ReportUserModal
+                    postId={postId}
+                    username={username}
+                />
+            }
+        ]
     }
 
     return (

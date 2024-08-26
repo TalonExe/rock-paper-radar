@@ -9,6 +9,8 @@ const ReportManagementBody = () => {
     const reportPost = staffStore((state) => state.reportPost);
     const getReportComment = staffStore((state) => state.getReportComment);
     const reportComment = staffStore((state) => state.reportComment);
+    const getReportUser = staffStore((state) => state.getReportUser);
+    const reportUser = staffStore((state) => state.reportUser);
     const [selectedOption, setSelectedOption] = useState('Post');
     const [currentHeaders, setCurrentHeaders] = useState([]);
     const [currentData, setCurrentData] = useState([]);
@@ -18,13 +20,15 @@ const ReportManagementBody = () => {
 
     const postHeaders = ['ID', 'User', 'Report Content', 'Post Link', 'Created At', 'Status', 'Action'];
     const commentHeaders = ['ID', 'Reported by', 'Report Content', 'Actual Comment', 'Created At', 'Status', 'Action'];
+    const userHeaders = ['ID', 'Reported by', 'Reason', 'Reported Account', 'Created At', 'Status', 'Action'];
 
     useEffect(() => {
         const fetchPostDetails = async () => {
             try {
-                console.log(reportComment);
-                await getReportComment();
                 await getReportPost();
+                await getReportComment();
+                await getReportUser();
+                console.log(reportUser);
                 if (selectedOption === 'Post'){
                     await getReportPost();
                     setIsLoading(true);
@@ -40,9 +44,8 @@ const ReportManagementBody = () => {
                     setIsLoading(false);
                 }
                 else if(selectedOption === 'User'){
-                    setIsLoading(true);
                     await getReportUser();
-                    console.log(reportUser);
+                    setIsLoading(true);
                     setCurrentHeaders(userHeaders);
                     setCurrentData(reportUser);
                     setIsLoading(false);

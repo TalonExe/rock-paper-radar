@@ -8,6 +8,7 @@ import EditPostModal from './EditPostModal'
 import DeletePostModal from './DeletePostModal'
 import Dropdown from '../ui/Dropdown'
 import ReportPostModal from './ReportPostModal'
+import ReportUserModal from './ReportUserModal'
 
 const ViewPostBody = ({ postId }) => {
     const getPostDetails = userStore((state) => state.getPostDetails);
@@ -58,6 +59,14 @@ const ViewPostBody = ({ postId }) => {
                     action: () => document.getElementById(`reportPostModal${postId}`).showModal(),
                     modal: <ReportPostModal
                         id={postId}
+                    /> ,
+                },
+                {
+                    label: "Report User",
+                    action: () => document.getElementById(`reportUserModal${postId}`).showModal(),
+                    modal: <ReportUserModal
+                        postId={postId}
+                        username={postDetails?.authorDetails.username}
                     /> ,
                 }
             ]);

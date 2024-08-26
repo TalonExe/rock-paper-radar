@@ -6,6 +6,7 @@ const FalseReportModal = ({ id, state, selectedOption }) => {
     const [error, setError] = useState(null);
     const updateReportPostState = staffStore((state) => state.updateReportPostState);
     const updateReportCommentState = staffStore((state) => state.updateReportCommentState);
+    const updateReportUserState = staffStore((state) => state.updateReportUserState);
 
     const falseReportHandler = async () => {
         setIsLoading(true);
@@ -19,6 +20,9 @@ const FalseReportModal = ({ id, state, selectedOption }) => {
             }
             else if (selectedOption === 'Comment'){
                 await updateReportCommentState({ reportId: id, state: 'False Report' });
+            }
+            else if (selectedOption === 'User'){
+                await updateReportUserState({ reportId: id, state: 'False Report' });
             }
             const modalElement = document.getElementById(`falseReportModal${id}`);
             if (modalElement) {
