@@ -11,6 +11,7 @@ const ReportManagementBody = ({item}) => {
             modal: <FalseReportModal
                 key={item.id}
                 id={item.id}
+                state={item.reportState}
             /> ,
         },
         {
@@ -19,19 +20,33 @@ const ReportManagementBody = ({item}) => {
             modal: <BanReportModal
                 key={item.id}
                 id={item.id}
+                state={item.reportState}
             /> ,
         },
     ]
 
+    const getRowClassName = (state) => {
+        switch (state) {
+            case 'Unreviewed':
+                return '';
+            case 'False Report':
+                return 'bg-green-100 rounded-md p-2';
+            case 'Banned':
+                return 'bg-red-100 rounded-md p-2';
+            default:
+                return '';
+        }
+    };
+
     return (
         <>
-            <tr>
+            <tr >
                 <td>{item.id}</td>
                 <td>{item.User.username}</td>
                 <td>{item.reportContent}</td>
                 <td><Link to={`/admin/post-view?p=${item.postId}`}>View Post</Link></td>
                 <td>{item.createdAt}</td>
-                <td>{item.reportState}</td>
+                <td ><span className={getRowClassName(item.reportState)}>{item.reportState}</span></td>
                 <td>
                 <Dropdown
                     key={item.id}
