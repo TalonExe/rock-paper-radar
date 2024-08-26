@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import staffStore from '../../stores/staffStore';
 
-const FalseReportModal = ({ id, state }) => {
+const FalseReportModal = ({ id, state, selectedOption }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const updateReportPostState = staffStore((state) => state.updateReportPostState);
+    const updateReportCommentState = staffStore((state) => state.updateReportCommentState);
 
     const falseReportHandler = async () => {
         setIsLoading(true);
@@ -13,7 +14,12 @@ const FalseReportModal = ({ id, state }) => {
             if (state !== 'Unreviewed') {
                 throw new Error('This report has already been reviewed.');
             }
-            await updateReportPostState({ reportId: id, state: 'False report' });
+            if (selectedOption === 'Post'){
+                await updateReportPostState({ reportId: id, state: 'False report' });
+            }
+            else if (selectedOption === 'Comment'){
+                await updateReportCommentState({ reportId: id, state: 'False report' });
+            }
             const modalElement = document.getElementById(`falseReportModal${id}`);
             if (modalElement) {
                 modalElement.close();

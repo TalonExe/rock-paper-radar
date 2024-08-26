@@ -17,23 +17,22 @@ const ReportManagementBody = () => {
     };
 
     const postHeaders = ['ID', 'User', 'Report Content', 'Post Link', 'Created At', 'Status', 'Action'];
-    const commentHeaders = ['ID', 'User', 'Report Content', 'Comment Link', 'Created At', 'Status', 'Action'];
+    const commentHeaders = ['ID', 'User', 'Report Content', 'Actual Comment', 'Created At', 'Status', 'Action'];
 
     useEffect(() => {
         const fetchPostDetails = async () => {
             try {
+                console.log(reportComment);
                 if (selectedOption === 'Post'){
-                    setIsLoading(true);
                     await getReportPost();
-                    console.log(reportPost);
+                    setIsLoading(true);
                     setCurrentHeaders(postHeaders);
                     setCurrentData(reportPost);
                     setIsLoading(false);
                 }
                 else if(selectedOption === 'Comment'){
-                    setIsLoading(true);
                     await getReportComment();
-                    console.log(reportComment);
+                    setIsLoading(true);
                     setCurrentHeaders(commentHeaders);
                     setCurrentData(reportComment);
                     setIsLoading(false);
@@ -51,11 +50,7 @@ const ReportManagementBody = () => {
             }
         };
         fetchPostDetails();
-    }, [getReportPost, selectedOption]);
-
-    if (isLoading) {
-        return <LoadingSpinner />;
-    }
+    }, [getReportPost, selectedOption, getReportComment]);
 
     return (
         <div>
@@ -86,31 +81,29 @@ const ReportManagementBody = () => {
                 />
             </div>
             {isLoading ? (
-                <p>Loading...</p>
+                <LoadingSpinner />
             ) : (
                 <div className='overflow-x-auto bg-white h-full w-full flex flex-col justify-start p-6 items-center'>
-                <table className='table w-full my-12 p-20 rounded-xl'>
-                    <thead className='bg-blue-400'>
-                        <tr>
-                            {currentHeaders.map((header, index) => (
-                                <th key={index}>{header}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentData
-                        .sort((a, b) => a.id - b.id)
-                        .map((item) => {
-                            return (
+                    <table className='table w-full my-12 p-20 rounded-xl'>
+                        <thead className='bg-blue-400'>
+                            <tr>
+                                {currentHeaders.map((header, index) => (
+                                    <th key={index}>{header}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {currentData
+                            .sort((a, b) => a.id - b.id)
+                            .map((item) => (
                                 <TableRow
                                     key={item.id}
                                     item={item}
                                     selectedOption={selectedOption}
                                 />
-                            )
-                        })}
-                    </tbody>
-                </table>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>              
             )}
         </div>

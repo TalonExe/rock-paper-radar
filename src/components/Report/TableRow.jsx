@@ -12,6 +12,7 @@ const ReportManagementBody = ({item, selectedOption}) => {
                 key={item.id}
                 id={item.id}
                 state={item.reportState}
+                selectedOption={selectedOption}
             /> ,
         },
         {
@@ -21,6 +22,7 @@ const ReportManagementBody = ({item, selectedOption}) => {
                 key={item.id}
                 id={item.id}
                 state={item.reportState}
+                selectedOption={selectedOption}
             /> ,
         },
     ]
@@ -48,7 +50,9 @@ const ReportManagementBody = ({item, selectedOption}) => {
                     {selectedOption === "Post" ? (
                         <Link to={`/admin/post-view?p=${item.postId}`}>View Post</Link>
                     ) : selectedOption === "Comment" ? (
-                        item.commentContent
+                        <div className="border-2 border-gray-300 rounded p-2 bg-gray-50">
+                            {item.Comment?.commentContent}
+                        </div>
                     ) : null}
                 </td>
                 <td>{item.createdAt}</td>

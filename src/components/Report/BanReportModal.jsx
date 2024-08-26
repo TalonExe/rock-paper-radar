@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import staffStore from '../../stores/staffStore';
 
-const BanReportModal = ({ id, state }) => {
+const BanReportModal = ({ id, state, selectedOption }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const updateReportPostState = staffStore((state) => state.updateReportPostState);
+    const updateReportCommentState = staffStore((state) => state.updateReportCommentState);
 
     const banReportHandler = async () => {
       if (state !== 'Unreviewed') {
@@ -15,7 +16,12 @@ const BanReportModal = ({ id, state }) => {
       setIsLoading(true);
       setError(null);
       try {
-        await updateReportPostState({ reportId: id, state: 'Banned' });
+        if (selectedOption === 'Post'){
+            await updateReportPostState({ reportId: id, state: 'Banned' });
+        }
+        else if (selectedOption === 'Comment'){
+            await updateReportCommentState({ reportId: id, state: 'Banned' });
+        }
         const modalElement = document.getElementById(`banReportModal${id}`);
         if (modalElement) {
           modalElement.close();

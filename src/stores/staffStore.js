@@ -228,6 +228,24 @@ const staffStore = create((set, get) => ({
             set({ reportPost: error });
         }
     },
+    updateReportCommentState: async (state) => {
+        try {
+            const response = await mainAxios.put(`/staff/reportComment`,
+                {
+                    state: state.state,
+                    reportId: state.reportId
+                },
+                {
+                headers: {
+                    authorization: Cookies.get('token'),
+                }
+            });
+            console.log(response);
+            set({ reportPost: response.data.data});
+        } catch (error) {
+            set({ reportPost: error });
+        }
+    },
     getReportComment: async () => {
         try {
             const response = await mainAxios.get(`/staff/reportComment`, {
