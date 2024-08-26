@@ -10,9 +10,14 @@ const ReportManagementBody = () => {
     const getReportComment = staffStore((state) => state.getReportComment);
     const reportComment = staffStore((state) => state.reportComment);
     const [selectedOption, setSelectedOption] = useState('Post');
+    const [currentHeaders, setCurrentHeaders] = useState([]);
+    const [currentData, setCurrentData] = useState([]);
     const handleOptionChange = (option) => {
         setSelectedOption(option);
     };
+
+    const postHeaders = ['ID', 'User', 'Report Content', 'Post Link', 'Created At', 'Status', 'Action'];
+    const commentHeaders = ['ID', 'User', 'Report Content', 'Comment Link', 'Created At', 'Status', 'Action'];
 
     useEffect(() => {
         const fetchPostDetails = async () => {
@@ -21,12 +26,24 @@ const ReportManagementBody = () => {
                     setIsLoading(true);
                     await getReportPost();
                     console.log(reportPost);
+                    setCurrentHeaders(postHeaders);
+                    setCurrentData(reportPost);
                     setIsLoading(false);
                 }
-                else {
+                else if(selectedOption === 'Comment'){
                     setIsLoading(true);
                     await getReportComment();
                     console.log(reportComment);
+                    setCurrentHeaders(commentHeaders);
+                    setCurrentData(reportComment);
+                    setIsLoading(false);
+                }
+                else if(selectedOption === 'User'){
+                    setIsLoading(true);
+                    await getReportUser();
+                    console.log(reportUser);
+                    setCurrentHeaders(userHeaders);
+                    setCurrentData(reportUser);
                     setIsLoading(false);
                 }
             } catch (error) {
@@ -59,6 +76,14 @@ const ReportManagementBody = () => {
                     checked={selectedOption === 'Comment'}
                     onChange={() => handleOptionChange('Comment')}
                 />
+                <input
+                    className="join-item btn"
+                    type="radio"
+                    name="options"
+                    aria-label= "User"
+                    checked={selectedOption === 'User'}
+                    onChange={() => handleOptionChange('User')}
+                />
             </div>
             {isLoading ? (
                 <p>Loading...</p>
@@ -67,30 +92,26 @@ const ReportManagementBody = () => {
                 <table className='table w-full my-12 p-20 rounded-xl'>
                     <thead className='bg-blue-400'>
                         <tr>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Report Content</th>
-                            <th>Post Link</th>
-                            <th>Created At</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            {currentHeaders.map((header, index) => (
+                                <th key={index}>{header}</th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-                        {reportPost
+                        {currentData
                         .sort((a, b) => a.id - b.id)
                         .map((item) => {
                             return (
                                 <TableRow
                                     key={item.id}
                                     item={item}
+                                    selectedOption={selectedOption}
                                 />
                             )
                         })}
                     </tbody>
                 </table>
                 </div>              
-                
             )}
         </div>
     );

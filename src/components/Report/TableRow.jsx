@@ -3,7 +3,7 @@ import FalseReportModal from './FalseReportModal';
 import Dropdown from '../../components/ui/Dropdown';
 import BanReportModal from './BanReportModal';
 
-const ReportManagementBody = ({item}) => {
+const ReportManagementBody = ({item, selectedOption}) => {
     let list = [
         {
             label: "False Report",
@@ -40,17 +40,23 @@ const ReportManagementBody = ({item}) => {
 
     return (
         <>
-            <tr >
+            <tr>
                 <td>{item.id}</td>
                 <td>{item.User.username}</td>
                 <td>{item.reportContent}</td>
-                <td><Link to={`/admin/post-view?p=${item.postId}`}>View Post</Link></td>
-                <td>{item.createdAt}</td>
-                <td ><span className={getRowClassName(item.reportState)}>{item.reportState}</span></td>
                 <td>
-                <Dropdown
-                    key={item.id}
-                    items={list}
+                    {selectedOption === "Post" ? (
+                        <Link to={`/admin/post-view?p=${item.postId}`}>View Post</Link>
+                    ) : selectedOption === "Comment" ? (
+                        item.commentContent
+                    ) : null}
+                </td>
+                <td>{item.createdAt}</td>
+                <td><span className={getRowClassName(item.reportState)}>{item.reportState}</span></td>
+                <td>
+                    <Dropdown
+                        key={item.id}
+                        items={list}
                     />
                 </td>
             </tr>
