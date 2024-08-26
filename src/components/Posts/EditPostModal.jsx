@@ -1,7 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useState } from 'react';
 import Input from '../ui/Input'
-import FileInput from '../ui/FileInput'
 import SearchInput from '../ui/SearchInput'
 import BadgeSelect from '../ui/BadgeSelect'
 import userStore from '../../stores/userStore'
