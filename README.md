@@ -6,9 +6,7 @@ Please install Node.js and npm [here](https://nodejs.org/en/download/)
 
 cd rock-paper-radar
 
+```
 npm install
 npm run dev
-
-```
-
 ```
